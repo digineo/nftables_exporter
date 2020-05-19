@@ -1,0 +1,15 @@
+[Unit]
+Description=Prometheus exporter for nftables
+Documentation=https://github.com/digineo/nftables_exporter
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/nftables-exporter --web.listen-address="localhost:9732" --web.disable-exporter-metrics
+
+DynamicUser=true
+ProtectSystem=full
+NoNewPrivileges=true
+AmbientCapabilities=CAP_NET_ADMIN
+
+[Install]
+WantedBy=multi-user.target
